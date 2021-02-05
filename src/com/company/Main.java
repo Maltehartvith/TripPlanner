@@ -63,7 +63,7 @@ public class Main {
     }
     public static void menu(){
 
-        System.out.println("Trip menu:\n1. Create trip\n2. List trip\n-1 to exit");
+        System.out.println("Trip menu:\n1. Create trip\n2. List trip\n3. Edit Trip\n-1 to exit");
     }
     public static Trip createTrip(Scanner scan){
 
@@ -127,7 +127,7 @@ public class Main {
             }
         System.out.println("What trip do you want to edit?");
             int tripChoice = scan.nextInt();
-        System.out.println("What do you want to edit?");
+        System.out.println("What do you want to edit? Country/Duration/Cost/Transportation/Equipment/Lift card.");
 
         if(scan.next().equalsIgnoreCase("country")){
             System.out.println("Which country do you want to change it to?");
@@ -183,7 +183,7 @@ public class Main {
         }
         System.out.println("What trip do you want to edit?");
         int tripChoice = scan.nextInt();
-        System.out.println("What do you want to edit?");
+        System.out.println("What do you want to edit? Country/Duration/Cost/Transportation/Equipment/Sun screen.");
 
         if(scan.next().equalsIgnoreCase("country")){
             System.out.println("Which country do you want to change it to?");
@@ -215,9 +215,11 @@ public class Main {
             beachTrips.get(tripChoice).setEquipment(e);
             return beachTrips.get(tripChoice);
 
-        }if(scan.nextLine().equalsIgnoreCase("Lift card")){
+        }if(scan.nextLine().equalsIgnoreCase("Sun screen")){
             System.out.println("Did you remember sunscreen now?");
+
             boolean s = scan.nextBoolean();
+
             beachTrips.get(tripChoice).setRememberSunscreen(s);
             return beachTrips.get(tripChoice);
 

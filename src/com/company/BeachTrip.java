@@ -24,6 +24,7 @@ public class BeachTrip extends Trip{
     }
 
     public void setRememberSunscreen(boolean rememberSunscreen) {
+
         this.rememberSunscreen = rememberSunscreen;
     }
 
