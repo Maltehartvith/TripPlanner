@@ -12,7 +12,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         ArrayList<Trip> denVildeTur = new ArrayList<>();
         BeachTrip tur = new BeachTrip("Denmark", 8, 7999, "buss", "googles", true);
-        SkiTrip tur2 = new SkiTrip("Sweden", 10, 7899, "buss", "Snowboad",0);
+        SkiTrip tur2 = new SkiTrip("Sweden", 10, 7899, "buss", "Snowboard",0);
         BeachTrip tur3= new BeachTrip("Croatia", 10, 8999, "Plane", "FlipFlops", true);
         denVildeTur.add(tur);
         denVildeTur.add(tur2);
@@ -44,12 +44,12 @@ public class Main {
                 System.out.println("What kind of trip do you want to edit? Beach(1) or Ski(2)?");
                 int i = scan.nextInt();
                 if(i == 1){
-
+                    editBeachTrip(scan, denVildeTur);
                 }
                 if(i == 2){
                     editSkiTrip(scan, denVildeTur);
                 }
-
+                menu();
                 break;
             case "-1":
                 stop = false;
@@ -114,57 +114,116 @@ public class Main {
             System.out.println(p);
         }
     }
-    public static SkiTrip editSkiTrip(Scanner scan, ArrayList<Trip> t){
-            int a = 0;
+    public static SkiTrip editSkiTrip(Scanner scan, ArrayList<Trip> tripList){
+            int index = 0;
 
-            ArrayList<SkiTrip> tt = new ArrayList<>();
-            for (Trip p : t) {
-                if (p.toString().contains("Ski Trip")) {
-                    tt.add((SkiTrip) p);
-                    System.out.println(a + ". " + p);
-                    a++;
+            ArrayList<SkiTrip> skiTrips = new ArrayList<>();
+            for (Trip tripObject : tripList) {
+                if (tripObject.toString().contains("Ski Trip")) {
+                    skiTrips.add((SkiTrip) tripObject);
+                    System.out.println(index + ". " + tripObject);
+                    index++;
                 }
             }
         System.out.println("What trip do you want to edit?");
-            int b = scan.nextInt();
+            int tripChoice = scan.nextInt();
         System.out.println("What do you want to edit?");
 
         if(scan.next().equalsIgnoreCase("country")){
             System.out.println("Which country do you want to change it to?");
             String c = scan.next();
-            tt.get(b).setCountry(c);
-            return tt.get(b);
+            skiTrips.get(tripChoice).setCountry(c);
+            return skiTrips.get(tripChoice);
+
         }if(scan.next().equalsIgnoreCase("Duration")){
             System.out.println("How many days did you intend to write?");
             int d = scan.nextInt();
-            tt.get(b).setDuration(d);
-            return tt.get(b);
+            skiTrips.get(tripChoice).setDuration(d);
+            return skiTrips.get(tripChoice);
+
         }if(scan.next().equalsIgnoreCase("cost")){
             System.out.println("What should be the new price?");
             double p = scan.nextDouble();
-            tt.get(b).setCost(p);
+            skiTrips.get(tripChoice).setCost(p);
+            return skiTrips.get(tripChoice);
+
         }if(scan.next().equalsIgnoreCase("transportation")){
             System.out.println("What kind of transportation would you rather go with?");
             String tr = scan.next();
-            tt.get(b).setTransportation(tr);
+            skiTrips.get(tripChoice).setTransportation(tr);
+            return skiTrips.get(tripChoice);
+
         }if(scan.next().equalsIgnoreCase("Equipment")){
             System.out.println("What is the change of equipment?");
             String e = scan.next();
-            tt.get(b).setEquipment(e);
+            skiTrips.get(tripChoice).setEquipment(e);
+            return skiTrips.get(tripChoice);
+
         }if(scan.nextLine().equalsIgnoreCase("Lift card")){
             System.out.println("What is the new lift card #ID?");
             int k = scan.nextInt();
-            tt.get(b).setLiftCard(k);
+            skiTrips.get(tripChoice).setLiftCard(k);
+            return skiTrips.get(tripChoice);
+
         }else{
             System.out.println("you typed something wrong.");
         }
-
-/*
-            }else{
-            System.out.println("I think you hit the wrong button.");
-
-        }*/
           return null;
+    }
+    public static BeachTrip editBeachTrip(Scanner scan, ArrayList<Trip> tripList){
+        int index = 0;
 
+        ArrayList<BeachTrip> beachTrips = new ArrayList<>();
+        for (Trip tripObject : tripList) {
+            if (tripObject.toString().contains("Ski Trip")) {
+                beachTrips.add((BeachTrip) tripObject);
+                System.out.println(index + ". " + tripObject);
+                index++;
+            }
+        }
+        System.out.println("What trip do you want to edit?");
+        int tripChoice = scan.nextInt();
+        System.out.println("What do you want to edit?");
+
+        if(scan.next().equalsIgnoreCase("country")){
+            System.out.println("Which country do you want to change it to?");
+            String c = scan.next();
+            beachTrips.get(tripChoice).setCountry(c);
+            return beachTrips.get(tripChoice);
+
+        }if(scan.next().equalsIgnoreCase("Duration")){
+            System.out.println("How many days did you intend to write?");
+            int d = scan.nextInt();
+            beachTrips.get(tripChoice).setDuration(d);
+            return beachTrips.get(tripChoice);
+
+        }if(scan.next().equalsIgnoreCase("cost")){
+            System.out.println("What should be the new price?");
+            double p = scan.nextDouble();
+            beachTrips.get(tripChoice).setCost(p);
+            return beachTrips.get(tripChoice);
+
+        }if(scan.next().equalsIgnoreCase("transportation")){
+            System.out.println("What kind of transportation would you rather go with?");
+            String tr = scan.next();
+            beachTrips.get(tripChoice).setTransportation(tr);
+            return beachTrips.get(tripChoice);
+
+        }if(scan.next().equalsIgnoreCase("Equipment")){
+            System.out.println("What is the change of equipment?");
+            String e = scan.next();
+            beachTrips.get(tripChoice).setEquipment(e);
+            return beachTrips.get(tripChoice);
+
+        }if(scan.nextLine().equalsIgnoreCase("Lift card")){
+            System.out.println("Did you remember sunscreen now?");
+            boolean s = scan.nextBoolean();
+            beachTrips.get(tripChoice).setRememberSunscreen(s);
+            return beachTrips.get(tripChoice);
+
+        }else{
+            System.out.println("you typed something wrong.");
+        }
+        return null;
     }
 }

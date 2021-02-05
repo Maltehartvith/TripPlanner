@@ -5,6 +5,7 @@ public class Trip {
     int duration;
     double cost;
     String transportation;
+    String git;
 
     public Trip(String country, int duration, double cost, String transportation) {
         this.country = country;
